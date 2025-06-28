@@ -1,4 +1,24 @@
 services:
+  api:
+    build:
+      context: ./apis/typescript # Change the api language for a different api language
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      PORT: 4022
+      NODE_ENV: "production"
+      AUTH_TOKEN: "2sOm7HFC5Yg6VaNb"
+
+      MINIO_ENDPOINT: "minio"
+      MINIO_ACCESS_KEY: "admin"
+      MINIO_SECRET_KEY: "password123"
+    ports:
+      - "4022:4022"
+    depends_on:
+      - minio
+    networks:
+      - minio-net
+
   minio:
     image: quay.io/minio/minio
     container_name: minio

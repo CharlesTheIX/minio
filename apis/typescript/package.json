@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "dist/server.js",
+  "author": "David Charles (CharlesTheIX)",
+  "name": "minio-api-typescript",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/server.js",
+    "dev": "yarn build && yarn start",
+    "clean": "rm -rf dist node_modules yarn.lock",
+    "docker:stop": "docker stop minio-api-typescript",
+    "docker:remove": "docker rm minio-api-typescript",
+    "docker:build": "docker build -t minio-api-typescript .",
+    "docker:run": "docker run -d -p 4022:4022 --name minio-api-typescript"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "minio": "^8.0.5",
+    "multer": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^22.15.17",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.8.3"
+  }
+}
