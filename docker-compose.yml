@@ -19,6 +19,36 @@ services:
     networks:
       - minio-net
 
+  webapp:
+    build:
+      context: ./webapps/nextjs
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_ZXhjaXRlZC1xdWFpbC00Ny5jbGVyay5hY2NvdW50cy5kZXYk
+    container_name: webapp
+    environment:
+      PORT: 3022
+      NODE_ENV: "production"
+      API_VERSION: "v1"
+      API_URL: "http://api:4022"
+      API_AUTH_TOKEN: "2sOm7HFC5Yg6VaNb"
+      CLERK_SECRET_KEY: "sk_test_YzoRlTSgsB1zFY4stTlbYX2AbTQIDaEj4vI5gVhtZM"
+
+      NEXT_PUBLIC_STORAGE_PREFIX: "__minio"
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL: "/sign-in"
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL: "/sign-up"
+      NEXT_PUBLIC_BASE_URL: "http://webapp:3022"
+      NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: "/"
+      NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: "/"
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_ZXhjaXRlZC1xdWFpbC00Ny5jbGVyay5hY2NvdW50cy5kZXYk"
+
+    ports:
+      - "3022:3022"
+    depends_on:
+      - api
+    networks:
+      - minio-net
+
   minio:
     image: quay.io/minio/minio
     container_name: minio
@@ -29,8 +59,8 @@ services:
       - minio_data:/data
     command: server /data --console-address ":9001"
     ports:
-      - "9000"
-      - "9001"
+      - "9000:9000"
+      - "9001:9001"
     networks:
       - minio-net
 

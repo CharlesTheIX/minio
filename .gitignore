@@ -1,4 +1,6 @@
 **/**/dist
 **/**/.env*
+**/**/.next
 **/**/yarn.lock
 **/**/node_modules
+**/**/next-env.d.ts
