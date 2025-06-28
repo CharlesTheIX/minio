@@ -1,0 +1,32 @@
+#toast-notification {
+  z-index: 50;
+  border: 3px solid;
+  border-right: none;
+  text-overflow: ellipsis;
+
+  p {
+    line-clamp: 3;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+
+    &:nth-child(1) {
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  &.none {
+    display: none;
+  }
+
+  &.hide {
+    animation: slide-left-reverse 100ms ease-in forwards;
+  }
+
+  &.show {
+    animation: slide-left 300ms ease-out forwards;
+  }
+}

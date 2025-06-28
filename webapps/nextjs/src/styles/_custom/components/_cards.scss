@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "../../core" as c;
+@use "../themes.config" as t;
+
+.card {
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  transition: all map.get(c.$transition_durations, m) ease-out;
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+    $color-highlight: map.get($theme-vars, color-highlight);
+
+    .card {
+      &.country-card {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+
+        &:hover {
+          color: $color-primary;
+          border-color: $color-primary;
+          background-color: $color-secondary;
+        }
+      }
+
+      &.profile-contact-tab-card {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+      }
+
+      &.games-feed-card {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+
+        &:hover {
+          fill: $color-primary;
+          color: $color-primary;
+          stroke: $color-primary;
+          border-color: $color-primary;
+          background-color: $color-secondary;
+        }
+      }
+    }
+  }
+}

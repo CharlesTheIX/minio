@@ -1,0 +1,21 @@
+@use "./cards";
+@use "./forms";
+@use "./header";
+@use "./footer";
+@use "./inputs";
+@use "./tables";
+@use "./modals";
+@use "./layouts";
+@use "./buttons";
+@use "./banners";
+@use "./user_controls";
+@use "./tab_containers";
+@use "./toast_notification";
+@use "./_impersonation_controls";
+@use "./_impersonation_restricted_banner";
+
+.image-container {
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  transition: border-color 300ms ease-out;
+}

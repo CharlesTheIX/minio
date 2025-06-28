@@ -1,0 +1,82 @@
+@use "sass:map";
+@use "../core" as c;
+
+.game-controller {
+  > .controller {
+    form {
+      @include c.flexRow(map.get(c.$gaps, s));
+      align-items: flex-end;
+      justify-content: space-between;
+
+      > div {
+        @include c.flexRow(map.get(c.$gaps, l));
+        width: auto;
+        max-height: 78px;
+
+        .input {
+          min-width: 300px;
+
+          > .input-container {
+            overflow: visible;
+          }
+        }
+      }
+    }
+  }
+
+  > .game-board {
+    > div {
+      @include c.flexColumn(map.get(c.$gaps, s));
+      width: 100%;
+
+      .sore-container {
+        @include c.flexRow(map.get(c.$gaps, s));
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: map.get(c.$font_sizes, l);
+
+        p {
+          width: auto;
+        }
+      }
+
+      .menu-container {
+        @include c.flexRow(0);
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      &.display-container {
+        @include c.flexRow(map.get(c.$gaps, m));
+        flex-wrap: wrap;
+        font-weight: bold;
+        align-items: center;
+        font-size: map.get(c.$font_sizes, l);
+      }
+    }
+  }
+
+  > .game-complete-container {
+    @include c.flexColumn(map.get(c.$gaps, l));
+
+    .content {
+      @include c.flexColumn(map.get(c.$gaps, s));
+    }
+  }
+
+  > .game-over-container {
+    @include c.flexColumn(map.get(c.$gaps, l));
+
+    .content {
+      @include c.flexColumn(map.get(c.$gaps, s));
+
+      > div {
+        @include c.flexRow(map.get(c.$gaps, m));
+        flex-wrap: wrap;
+        font-weight: bold;
+      }
+    }
+  }
+}

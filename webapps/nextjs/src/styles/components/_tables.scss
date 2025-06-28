@@ -1,0 +1,125 @@
+@use "sass:map";
+@use "../core" as c;
+
+.table-container {
+  @include c.flexColumn(0);
+
+  .controls {
+    @include c.flexColumn(map.get(c.$gaps, s));
+    overflow: hidden;
+    border: 3px solid;
+    border-bottom: none;
+    padding: map.get(c.$gaps, m);
+
+    > div {
+      > p {
+        border-bottom: 3px solid;
+      }
+
+      &.search {
+        @include c.flexRow(map.get(c.$gaps, m));
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+
+        > div {
+          @include c.flexRow(map.get(c.$gaps, m));
+          width: auto;
+          flex-wrap: wrap;
+          font-weight: bold;
+          align-items: center;
+          padding: 0 map.get(c.$gaps, s);
+
+          .icon {
+            cursor: pointer;
+          }
+
+          &.search-bar {
+            .input {
+              border: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      &.hide-show {
+        @include c.flexRow(map.get(c.$gaps, m));
+        max-height: 0;
+        flex-wrap: wrap;
+        overflow: hidden;
+        padding: 0 map.get(c.$gaps, s);
+        transition: max-height 300ms ease-out;
+
+        &.show {
+          max-height: 1000px;
+        }
+      }
+    }
+  }
+
+  .inner {
+    border: 3px solid;
+    max-height: 500px;
+
+    table {
+      td,
+      th {
+        border-left: 3px solid;
+
+        p {
+          span {
+            line-clamp: 1;
+            max-width: 400px;
+            display: -webkit-box;
+            word-wrap: break-word;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+          }
+
+          svg {
+            cursor: pointer;
+          }
+        }
+
+        &:nth-child(1) {
+          border: none;
+        }
+      }
+
+      thead {
+        z-index: 11;
+        border-bottom: 3px solid;
+      }
+
+      tbody {
+        tr {
+          border-bottom: 3px solid;
+
+          &:nth-child(even) {
+            filter: brightness(1.2);
+          }
+
+          &:hover {
+            filter: brightness(1);
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    border: 3px solid;
+    border-top: none;
+    padding: map.get(c.$gaps, m);
+
+    > div {
+      > div {
+        &.posts-per-page {
+          max-height: 46px;
+        }
+      }
+    }
+  }
+}

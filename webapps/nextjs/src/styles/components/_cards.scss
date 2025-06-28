@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "../core" as c;
+
+.card {
+  width: auto;
+  overflow: hidden;
+  border: 3px solid;
+  position: relative;
+
+  > .inner {
+    @include c.flexColumn(map.get(c.$gaps, m));
+    padding: map.get(c.$gaps, s) map.get(c.$gaps, l);
+  }
+
+  &.profile-contact-tab-card {
+    @include c.flexRow(map.get(c.$gaps, l));
+    align-items: center;
+    padding: map.get(c.$gaps, s);
+    justify-content: space-between;
+
+    > div {
+      @include c.flexRow(map.get(c.$gaps, s));
+      width: 100%;
+      align-items: center;
+
+      .image-wrapper {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+
+    .contact {
+      width: 100%;
+      cursor: pointer;
+      max-width: 300px;
+    }
+  }
+
+  &.games-feed-card {
+    width: auto;
+    cursor: pointer;
+    max-width: 400px;
+    min-height: 150px;
+    justify-content: center;
+    padding: map.get(c.$gaps, m);
+    padding-left: map.get(c.$gaps, xl);
+
+    .background-icon {
+      opacity: 50%;
+      position: absolute;
+      top: map.get(c.$gaps, s);
+      left: map.get(c.$gaps, s);
+    }
+
+    .content {
+      position: relative;
+    }
+  }
+}

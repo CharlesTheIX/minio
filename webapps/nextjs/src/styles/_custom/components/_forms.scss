@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+.form {
+  .form-loading-container {
+    transition: background-color 300ms ease-out;
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+
+    .form {
+      .form-loading-container {
+        background-color: $color-primary;
+      }
+    }
+  }
+}

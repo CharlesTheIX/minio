@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+@mixin themes() {
+  @each $theme-name, $theme-vars in t.$themes {
+    &.#{$theme-name} {
+      $color-highlight: map.get($theme-vars, color-highlight);
+      $color-primary: map.get($theme-vars, color-primary);
+      $color-secondary: map.get($theme-vars, color-secondary);
+
+      .background {
+        background-color: $color-primary;
+      }
+
+      > section {
+        color: $color-secondary;
+      }
+    }
+  }
+}
+
+#impersonation-restricted-banner {
+  @include themes();
+}

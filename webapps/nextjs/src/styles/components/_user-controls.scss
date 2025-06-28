@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "../core" as c;
+
+#user-controls {
+  z-index: 50;
+  position: fixed;
+  border: 3px solid;
+  background-color: white;
+  left: map.get(c.$gaps, l);
+  bottom: map.get(c.$gaps, l);
+
+  ul {
+    @include c.flexColumn(0);
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height map.get(c.$transition_durations, m) ease-out;
+
+    > li {
+      > * {
+        padding: map.get(c.$gaps, s);
+      }
+
+      > a {
+        padding-bottom: 0;
+        display: inline-block;
+      }
+
+      button {
+        border: none;
+      }
+    }
+  }
+
+  > div {
+    cursor: pointer;
+    padding: map.get(c.$gaps, s);
+    transition: rotate map.get(c.$transition_durations, m) ease-out;
+  }
+
+  &:hover {
+    ul {
+      max-height: 1000px;
+    }
+
+    > div {
+      rotate: 90deg;
+    }
+  }
+}

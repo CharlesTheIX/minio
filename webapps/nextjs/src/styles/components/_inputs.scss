@@ -1,0 +1,217 @@
+@use "sass:map";
+@use "../core" as c;
+
+.input {
+  @include c.flexColumn(map.get(c.$gaps, s));
+  width: 100%;
+  text-align: left;
+
+  label {
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    outline: none;
+    appearance: none;
+    border: 3px solid;
+    padding: map.get(c.$gaps, s) map.get(c.$gaps, m);
+  }
+
+  &.multi-text-input {
+    .input-container {
+      @include c.flexRow(map.get(c.$gaps, s));
+      width: 100%;
+
+      > input {
+        width: 100%;
+      }
+    }
+
+    .value-container {
+      @include c.flexRow(map.get(c.$gaps, s));
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }
+
+  &.password-input {
+    > div {
+      @include c.flexColumn(map.get(c.$gaps, m));
+      width: 100%;
+
+      .input-container {
+        width: 100%;
+        position: relative;
+      }
+
+      .confirmation-container {
+        @include c.flexColumn(map.get(c.$gaps, m));
+        width: 100%;
+
+        > div {
+          width: 100%;
+          position: relative;
+        }
+      }
+
+      input {
+        width: 100%;
+      }
+
+      .hide-icon {
+        cursor: pointer;
+        position: absolute;
+        right: map.get(c.$gaps, m);
+        top: calc(map.get(c.$gaps, s) + 0.25rem);
+      }
+    }
+  }
+
+  &.rectangle-input {
+    .input-container {
+      @include c.flexRow(map.get(c.$gaps, s));
+
+      > div {
+        @include c.flexColumn(0);
+        width: 100%;
+
+        p {
+          width: 100%;
+          font-size: map.get(c.$font_sizes, s);
+        }
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.select-input {
+    &.active {
+      > div {
+        button {
+          svg {
+            rotate: 180deg;
+          }
+        }
+
+        ul {
+          max-height: 1000px;
+        }
+      }
+    }
+
+    .input-container {
+      width: 100%;
+      outline: none;
+      appearance: none;
+      overflow: hidden;
+      border: 3px solid;
+      position: relative;
+      transition: all map.get(c.$transition_durations, m) ease-out;
+
+      button {
+        width: 100%;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        text-align: left;
+        appearance: none;
+        padding: map.get(c.$gaps, s) map.get(c.$gaps, m);
+
+        svg {
+          position: absolute;
+          right: map.get(c.$gaps, m);
+          top: calc(map.get(c.$gaps, s));
+          transition: all map.get(c.$transition_durations, m) ease-out;
+        }
+      }
+
+      ul {
+        @include c.scrollbar(y);
+        z-index: 48;
+        max-height: 0px;
+        position: relative;
+        transition: max-height map.get(c.$transition_durations, m) ease-out;
+
+        li {
+          cursor: pointer;
+          position: relative;
+          padding: map.get(c.$gaps, m) map.get(c.$gaps, s);
+        }
+      }
+    }
+  }
+}
+
+// @each $theme-name, $theme-vars in t.$themes {
+//   .#{$theme-name} {
+//     $color-primary: map.get($theme-vars, color-primary);
+//     $color-secondary: map.get($theme-vars, color-secondary);
+//     $color-highlight: map.get($theme-vars, color-highlight);
+
+//     .input {
+//       input,
+//       select,
+//       textarea {
+//         border-color: $color-secondary;
+//         background-color: $color-primary;
+
+//         &:focus,
+//         &:active,
+//         &:focus-within {
+//           color: $color-primary;
+//           background-color: $color-secondary;
+
+//           & + div {
+//             fill: $color-primary;
+//             stroke: $color-primary;
+//           }
+//         }
+
+//         & + div {
+//           fill: $color-secondary;
+//           stroke: $color-secondary;
+//         }
+//       }
+
+//       &.select-input {
+//         &:hover,
+//         &.active {
+//           > div {
+//             button {
+//               fill: $color-primary;
+//               color: $color-primary;
+//               stroke: $color-primary;
+//               background-color: $color-secondary;
+//             }
+//           }
+//         }
+
+//         > div {
+//           button {
+//             fill: $color-secondary;
+//             color: $color-secondary;
+//             stroke: $color-secondary;
+//             background-color: $color-primary;
+//           }
+
+//           ul {
+//             li {
+//               color: $color-secondary;
+//               background-color: $color-primary;
+
+//               &:hover {
+//                 color: $color-primary;
+//                 background-color: $color-secondary;
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

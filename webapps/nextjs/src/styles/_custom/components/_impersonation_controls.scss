@@ -1,0 +1,64 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+#impersonation-controls {
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+
+  ul {
+    > li {
+      border-top-right-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      transition: background-color 300ms ease-out;
+    }
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-highlight: map.get($theme-vars, color-highlight);
+    $color-secondary: map.get($theme-vars, color-secondary);
+
+    #impersonation-controls {
+      border-color: $color-highlight;
+      background-color: $color-highlight;
+
+      > ul {
+        color: $color-highlight;
+
+        > li {
+          fill: $color-primary;
+          stroke: $color-primary;
+
+          a,
+          p {
+            fill: $color-primary;
+            color: $color-primary;
+            stroke: $color-primary;
+          }
+
+          &:hover {
+            color: $color-highlight;
+            fill: $color-highlight;
+            stroke: $color-highlight;
+            background-color: $color-primary;
+
+            a,
+            p {
+              color: $color-highlight;
+              fill: $color-highlight;
+              stroke: $color-highlight;
+            }
+          }
+        }
+      }
+
+      > div {
+        fill: $color-primary;
+        color: $color-primary;
+        stroke: $color-primary;
+      }
+    }
+  }
+}

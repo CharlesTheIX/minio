@@ -1,0 +1,14 @@
+.modal {
+  z-index: 52;
+
+  > .background {
+    z-index: 2;
+    opacity: 0.8;
+  }
+
+  > .content {
+    z-index: 2;
+    max-height: 60vh;
+    border: 3px solid;
+  }
+}

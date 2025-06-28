@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "../core" as c;
+
+.tab-container {
+  @include c.flexColumn(0);
+
+  > .header {
+    @include c.flexRow(0);
+    width: 100%;
+    border-bottom: 3px solid;
+    justify-content: flex-end;
+
+    ul {
+      @include c.flexRow(0);
+      overflow: hidden;
+      border: 3px solid;
+      border-bottom: none;
+
+      > li {
+        cursor: pointer;
+        font-weight: bold;
+        border-left: 3px solid;
+        padding: map.get(c.$gaps, s) map.get(c.$gaps, m);
+
+        &:nth-child(1) {
+          border: none;
+        }
+
+        &.active {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  > .body {
+    @include c.scrollbar(y);
+    width: 100%;
+    border: 3px solid;
+    border-top: none;
+    padding: map.get(c.$gaps, l);
+  }
+}

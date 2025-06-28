@@ -1,0 +1,161 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+.table-container {
+  .controls {
+    border-top-right-radius: 0.5rem;
+  }
+
+  .pagination {
+    border-bottom-left-radius: 0.5rem;
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+    $color-highlight: map.get($theme-vars, color-highlight);
+
+    .table-container {
+      .controls {
+        .search {
+          > div {
+            .icon {
+              fill: $color-secondary;
+              stroke: $color-secondary;
+
+              &:hover,
+              &.active {
+                fill: $color-highlight;
+                stroke: $color-highlight;
+              }
+            }
+          }
+
+          .search-bar {
+            &.focused {
+              input {
+                color: $color-primary;
+                background-color: $color-secondary;
+              }
+            }
+          }
+        }
+
+        .hide-show {
+          .button {
+            fill: $color-primary;
+            color: $color-primary;
+            stroke: $color-primary;
+            border-color: $color-secondary;
+            background-color: $color-secondary;
+
+            &.active {
+              fill: $color-secondary;
+              color: $color-secondary;
+              stroke: $color-secondary;
+              background-color: $color-primary;
+
+              &:hover {
+                fill: $color-primary;
+                color: $color-primary;
+                stroke: $color-primary;
+                border-color: $color-secondary;
+                background-color: $color-secondary;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .inner {
+      border-color: $color-secondary;
+
+      table {
+        thead {
+          border-color: $color-secondary;
+
+          tr {
+            color: $color-primary;
+            background-color: $color-secondary;
+
+            th {
+              border-color: $color-secondary;
+
+              p {
+                fill: $color-primary;
+                stroke: $color-primary;
+
+                span {
+                  &.sort {
+                    fill: $color-primary;
+                    stroke: $color-primary;
+
+                    &:hover {
+                      fill: $color-highlight;
+                      stroke: $color-highlight;
+                    }
+                  }
+
+                  fill: $color-primary;
+                  stroke: $color-primary;
+                }
+              }
+            }
+          }
+        }
+
+        tbody {
+          border-color: $color-secondary;
+
+          tr {
+            fill: $color-highlight;
+            color: $color-secondary;
+            stroke: $color-highlight;
+            border-color: $color-secondary;
+            background-color: $color-primary;
+
+            td {
+              border-color: $color-secondary;
+            }
+
+            &:hover,
+            &.pinned {
+              color: $color-primary;
+              fill: $color-highlight;
+              stroke: $color-highlight;
+              background-color: $color-secondary;
+
+              td {
+                border-color: $color-secondary;
+              }
+            }
+          }
+        }
+
+        &.pinned {
+          tbody {
+            tr {
+              &.pinned {
+                fill: $color-highlight;
+                color: $color-secondary;
+                stroke: $color-highlight;
+                border-color: $color-secondary;
+                background-color: $color-primary;
+
+                &:hover {
+                  color: $color-primary;
+                  fill: $color-highlight;
+                  stroke: $color-highlight;
+                  background-color: $color-secondary;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

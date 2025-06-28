@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "../core" as c;
+
+#header {
+  top: 0;
+  right: 0;
+  z-index: 50;
+  width: 100vw;
+  position: sticky;
+  padding: map.get(c.$gaps, m) map.get(c.$gaps, l) 0 map.get(c.$gaps, l);
+
+  > div {
+    margin: 0 auto;
+    border: 3px solid;
+    background-color: white;
+    max-width: map.get(c.$widths, max);
+    padding: map.get(c.$gaps, s) map.get(c.$gaps, m);
+
+    > div {
+      @include c.flexRow(map.get(c.$gaps, m));
+      margin: 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      max-width: map.get(c.$widths, content);
+
+      > a {
+        @include c.flexRow(map.get(c.$gaps, s));
+        align-items: center;
+
+        > p {
+          font-weight: bold;
+          font-size: map.get(c.$font_sizes, 3xl);
+        }
+      }
+
+      > nav {
+        @include c.flexRow(map.get(c.$gaps, m));
+        align-items: center;
+
+        > ul {
+          @include c.flexRow(map.get(c.$gaps, m));
+          align-items: center;
+        }
+      }
+    }
+  }
+}

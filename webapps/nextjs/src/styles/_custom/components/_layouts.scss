@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+#admin-layout,
+#dashboard-layout {
+  > div {
+    transition: background-color 300ms ease-out;
+
+    > aside {
+      nav {
+        border-top-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        transition: background-color 300ms ease-out, border-color 300ms ease-out;
+
+        ul {
+          li {
+            transition: background-color 300ms ease-out, color 300ms ease-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  $color-primary: map.get($theme-vars, color-primary);
+  $color-secondary: map.get($theme-vars, color-secondary);
+
+  main {
+    &.#{$theme-name} {
+      color: $color-secondary;
+      background: $color-primary;
+    }
+  }
+
+  #admin-layout,
+  #dashboard-layout {
+    &.#{$theme-name} {
+      background-color: $color-primary;
+
+      aside {
+        nav {
+          border-color: $color-secondary;
+          background-color: $color-primary;
+
+          ul {
+            li {
+              color: $color-secondary;
+              background-color: $color-primary;
+
+              a {
+                fill: $color-secondary;
+                stroke: $color-secondary;
+              }
+
+              &:hover {
+                color: $color-primary;
+                background-color: $color-secondary;
+
+                a {
+                  fill: $color-primary;
+                  stroke: $color-primary;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

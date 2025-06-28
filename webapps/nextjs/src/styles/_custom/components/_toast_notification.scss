@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+@mixin themes() {
+  @each $theme-name, $theme-vars in t.$themes {
+    &.#{$theme-name} {
+      $color-primary: map.get($theme-vars, color-primary);
+      $color-secondary: map.get($theme-vars, color-secondary);
+
+      &.hi,
+      &.bye,
+      &.success {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+
+        > div {
+          fill: $color-secondary;
+          stroke: $color-secondary;
+        }
+      }
+
+      &.error {
+        color: $color-primary;
+        border-color: $color-secondary;
+        background-color: $color-secondary;
+
+        > div {
+          fill: $color-primary;
+          stroke: $color-primary;
+        }
+      }
+    }
+  }
+}
+
+#toast-notification {
+  @include themes();
+  border-bottom-left-radius: 0.5rem;
+}

@@ -1,0 +1,8 @@
+@use "../themes.config" as t;
+
+.modal {
+  > .content {
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+}

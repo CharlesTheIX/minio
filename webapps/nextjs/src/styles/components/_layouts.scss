@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "../core" as c;
+
+main {
+  @include c.flexColumn(map.get(c.$gaps, xl));
+  min-height: 100vh;
+  padding: map.get(c.$gaps, xl);
+}
+
+#admin-layout,
+#dashboard-layout {
+  > div {
+    max-width: calc(0.25rem * 360);
+
+    > aside {
+      z-index: 49;
+      top: calc(0.25rem * 40);
+      max-width: calc(0.25rem * 50);
+
+      nav {
+        border: 3px solid;
+        max-height: calc(100vh - (0.25rem * 39) - (0.25rem * 29));
+      }
+    }
+  }
+}

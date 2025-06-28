@@ -1,0 +1,409 @@
+@use "sass:map";
+
+$font_size_base: 1rem;
+$font_sizes: (
+  xs: calc($font_size_base * 0.5),
+  s: calc($font_size_base * 0.75),
+  m: calc($font_size_base * 1),
+  l: calc($font_size_base * 1.5),
+  xl: calc($font_size_base * 2),
+  2xl: calc($font_size_base * 2.5),
+  3xl: calc($font_size_base * 3),
+  4xl: calc($font_size_base * 4),
+  5xl: calc($font_size_base * 5),
+);
+
+$gap_base: 1rem;
+$gaps: (
+  s: calc($gap_base / 2),
+  m: calc($gap_base * 1),
+  l: calc($gap_base * 2),
+  xl: calc($gap_base * 4),
+);
+
+$transition_duration_base: 300ms;
+$transition_durations: (
+  s: calc($transition_duration_base / 2),
+  m: calc($transition_duration_base * 1),
+  l: calc($transition_duration_base * 2),
+);
+
+$width_base: 1rem;
+$widths: (
+  max: calc($width_base * 100),
+  content: calc($width_base * 80),
+  m: calc($width_base * 50),
+);
+
+@mixin button($type: default) {
+  @if $type == default {
+  } @else {
+  }
+
+  width: auto;
+  cursor: pointer;
+  font-weight: bold;
+  border: 3px solid;
+  font-size: map.get($font_sizes, m);
+  padding: map.get($gaps, s) map.get($gaps, m);
+  transition: all map.get($transition_durations, m) ease-out;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-within {
+    outline: none;
+    appearance: none;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@mixin fadeIn($duration: map.get($transition_durations, l)) {
+  animation: fade-in $duration ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+@mixin fadeOut($duration: 1000ms) {
+  animation: fade-out $duration ease-out forwards;
+}
+
+@mixin flexColumn($gap: $gap_base) {
+  gap: $gap;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexRow($gap: $gap_base) {
+  gap: $gap;
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin maxWidth($value) {
+  width: 100%;
+  margin: 0 auto;
+  max-width: map.get($widths, $value);
+}
+
+@mixin scrollbar($direction: both) {
+  overflow: hidden;
+  transition: all 300ms ease-out;
+
+  @if ($direction == x) {
+    overflow-x: scroll;
+  } @else if ($direction == y) {
+    overflow-y: scroll;
+  } @else {
+    overflow: scroll;
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    transition: all map.get($transition_durations, m) ease-out;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 3px solid;
+    border-radius: 1rem;
+    transition: all map.get($transition_durations, m) ease-out;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes slide-down-reverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+@mixin slideDown($duration: 1000ms, $direction: default) {
+  @if $direction == reverse {
+    animation: slide-down-reverse $duration ease-out forwards;
+  } @else {
+    animation: slide-down $duration ease-out forwards;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes slide-left-reverse {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+@mixin slideLeft($duration: 1000ms, $direction: default) {
+  @if $direction == reverse {
+    animation: slide-left-reverse $duration ease-out forwards;
+  } @else {
+    animation: slide-left $duration ease-out forwards;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes slide-left-reverse {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+@mixin slideRight($duration: 1000ms, $direction: default) {
+  @if $direction == reverse {
+    animation: slide-right-reverse $duration ease-out forwards;
+  } @else {
+    animation: slide-right $duration ease-out forwards;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes slide-up-reverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+@mixin slideUp($duration: 1000ms, $direction: default) {
+  @if $direction == reverse {
+    animation: slide-up-reverse $duration ease-out forwards;
+  } @else {
+    animation: slide-up $duration ease-out forwards;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: blue;
+}
+
+body {
+  @include flexColumn(0);
+  width: 100vw;
+  color: black;
+  line-height: 1.5;
+  overflow-x: hidden;
+  align-items: stretch;
+  background-color: white;
+  justify-content: space-between;
+  font-size: map.get($font_sizes, m);
+}
+
+button,
+.button {
+  @include button();
+}
+
+.fade-in {
+  @include fadeIn();
+}
+
+.fade-out {
+  animation: fade-out 1000ms ease-out forwards;
+}
+
+.flex-column {
+  @include flexColumn(0);
+}
+
+.flex-row {
+  @include flexRow(0);
+}
+
+/* font-size */
+@each $key, $value in $font_sizes {
+  .font-size-#{$key} {
+    font-size: $value;
+  }
+}
+
+/* gap */
+@each $key, $value in $gaps {
+  .gap-#{$key} {
+    gap: $value;
+  }
+}
+
+h1 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, 5xl);
+}
+
+h2 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, 4xl);
+}
+
+h3 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, 3xl);
+}
+
+h4 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, 2xl);
+}
+
+h5 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, xl);
+}
+
+h6 {
+  font-weight: bold;
+  font-size: map.get($font_sizes, l);
+}
+
+input {
+  font-size: map.get($font_sizes, m);
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* max-width */
+@each $key, $value in $widths {
+  .max-width-#{$key} {
+    width: 100%;
+    margin: 0 auto;
+    max-width: $value;
+  }
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.scrollbar-x {
+  @include scrollbar(x);
+}
+.scrollbar-y {
+  @include scrollbar(y);
+}
+
+section {
+  @include maxWidth(content);
+}
+
+.slide-down {
+  @include slideDown(map.get($transition_durations, l));
+}
+
+.slide-left {
+  @include slideLeft(map.get($transition_durations, l));
+}
+
+.slide-left-reverse {
+  @include slideLeft(map.get($transition_durations, l), reverse);
+}
+
+.slide-right {
+  @include slideRight(map.get($transition_durations, l));
+}
+
+.slide-right-reverse {
+  @include slideRight(map.get($transition_durations, l), reverse);
+}
+
+.slide-up {
+  @include slideUp(map.get($transition_durations, l));
+}
+
+.slide-up-reverse {
+  @include slideUp(map.get($transition_durations, l), reverse);
+}
+
+textarea {
+  min-height: 150px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

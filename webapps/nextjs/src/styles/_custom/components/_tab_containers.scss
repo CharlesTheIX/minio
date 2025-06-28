@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "../mixins" as m;
+@use "../../core" as c;
+@use "../themes.config" as t;
+
+.tab-container {
+  > .header {
+    ul {
+      border-top-right-radius: m.$border_radius;
+
+      > li {
+        transition: color map.get(c.$transition_durations, m) ease-out,
+          background-color map.get(c.$transition_durations, m) ease-out;
+      }
+    }
+  }
+
+  > .body {
+    max-height: 60vh;
+    border-bottom-left-radius: m.$border_radius;
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+    $color-highlight: map.get($theme-vars, color-highlight);
+
+    .tab-container {
+      > .header {
+        ul {
+          > li {
+            color: $color-secondary;
+            border-color: $color-secondary;
+            background-color: $color-primary;
+
+            &:hover,
+            &.active {
+              color: $color-primary;
+              border-color: $color-secondary;
+              background-color: $color-secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+}

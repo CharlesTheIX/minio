@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "../themes.config" as t;
+
+#cookie-banner {
+  transition: background-color 300ms ease-out;
+
+  &.show {
+    > div {
+      animation: slide-up 500ms ease-out forwards;
+    }
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+
+    #cookie-banner {
+      > div {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+      }
+    }
+  }
+}

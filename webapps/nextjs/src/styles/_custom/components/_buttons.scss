@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "../mixins" as m;
+@use "../themes.config" as t;
+
+.button {
+  @include m.customBorderRadius();
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+@each $theme-name, $theme-vars in t.$themes {
+  .#{$theme-name} {
+    $color-primary: map.get($theme-vars, color-primary);
+    $color-secondary: map.get($theme-vars, color-secondary);
+    $color-highlight: map.get($theme-vars, color-highlight);
+
+    .button {
+      fill: $color-secondary;
+      color: $color-secondary;
+      stroke: $color-secondary;
+      border-color: $color-secondary;
+      background-color: $color-primary;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:focus-within {
+        fill: $color-primary;
+        color: $color-primary;
+        stroke: $color-primary;
+        border-color: $color-secondary;
+        background-color: $color-secondary;
+      }
+
+      &.disabled {
+        color: $color-secondary;
+        border-color: $color-secondary;
+        background-color: $color-primary;
+      }
+    }
+  }
+}

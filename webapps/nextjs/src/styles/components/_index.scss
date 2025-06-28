@@ -1,0 +1,74 @@
+@use "./cards";
+@use "./forms";
+@use "./feeds";
+@use "./inputs";
+@use "./tables";
+@use "./header";
+@use "./footer";
+@use "./modals";
+@use "./banners";
+@use "./layouts";
+@use "./user-controls";
+@use "./tab-container";
+@use "./game_controller";
+@use "./toast-notification";
+@use "./impersonation-controls";
+@use "./impersonation-restricted-banner";
+
+/* I */
+.image-container {
+  overflow: hidden;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    position: absolute;
+    translate: -50% -50%;
+  }
+}
+
+/* L */
+.link-wrapper {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+}
+
+/* S */
+.scrollbar-x,
+.scrollbar-y {
+  overflow: hidden;
+  transition: all 300ms ease-out;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    transition: all 300ms ease-out;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 3px solid;
+    border-radius: 1rem;
+    transition: all 300ms ease-out;
+  }
+}
+.scrollbar-x {
+  overflow-x: scroll;
+}
+.scrollbar-y {
+  overflow-y: scroll;
+}

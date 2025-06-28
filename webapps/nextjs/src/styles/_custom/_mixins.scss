@@ -1,0 +1,18 @@
+@mixin customBorderRadius($has_change: true) {
+  border-top-right-radius: $border_radius;
+  border-bottom-left-radius: $border_radius;
+
+  @if $has_change == true {
+    &:hover,
+    &:focus,
+    &:active,
+    &:focus-within {
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: $border_radius;
+      border-bottom-right-radius: $border_radius;
+    }
+  }
+}
+
+$border_radius: 0.5rem;

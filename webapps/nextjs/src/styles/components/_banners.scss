@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "../core" as c;
+
+#cookie-banner {
+  @include c.flexColumn(0);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100vw;
+  z-index: 100;
+  height: 100vh;
+  display: hidden;
+  position: fixed;
+  justify-content: end;
+
+  > div {
+    width: 100%;
+    background-color: white;
+    padding: map.get(c.$gaps, m) map.get(c.$gaps, l);
+
+    > div {
+      @include c.flexRow(map.get(c.$gaps, xl));
+      width: 100%;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      max-width: map.get(c.$widths, content);
+
+      p {
+        font-size: map.get(c.$font_sizes, s);
+      }
+    }
+  }
+
+  &.show {
+    opacity: 1;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    > div {
+      border-top: 3px solid;
+    }
+  }
+}
+
+.hero-banner {
+  @include c.flexColumn(map.get(c.$gaps, m));
+
+  > div {
+    @include c.flexColumn(0);
+
+    .title {
+      @include c.flexRow(map.get(c.$gaps, s));
+      align-items: center;
+    }
+
+    .highlights {
+      @include c.flexRow(map.get(c.$gaps, s));
+      font-weight: bold;
+      position: relative;
+      align-items: center;
+      padding-left: calc(100px + map.get(c.$gaps, s));
+    }
+  }
+
+  > p {
+    max-width: map.get(c.$widths, m);
+  }
+}

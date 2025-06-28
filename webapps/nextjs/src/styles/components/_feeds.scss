@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "../core" as c;
+
+#country-feed {
+  @include c.flexColumn(map.get(c.$gaps, m));
+
+  > div {
+    @include c.flexColumn(map.get(c.$gaps, l));
+
+    .controls {
+      @include c.flexRow(map.get(c.$gaps, l));
+      z-index: 10;
+      width: 100%;
+      max-height: 78px;
+      overflow: visible;
+
+      .input {
+        .input-container {
+          overflow: visible;
+        }
+      }
+    }
+
+    .body {
+      @include c.flexRow(map.get(c.$gaps, m));
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+}
